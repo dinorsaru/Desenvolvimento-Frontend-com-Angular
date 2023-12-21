@@ -27,7 +27,7 @@ console.log(increJuros(100,15))
 
 */
 
-function cimc(){
+function cimc(peso, altu){
     return peso / altu*altu
 
 }
