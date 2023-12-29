@@ -1,5 +1,5 @@
 
-const pokemonList = document.getElementById('pokemonList')
+
 const offset = 0 
 const limit = 10    
 const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
@@ -25,45 +25,16 @@ function convertPokemonToLi(pokemon){
     `
 }
 
-/*processamento assicrono para obter a promessa de uma resposta
- */
+const pokemonList = document.getElementById('pokemonList')
 
+pokeAPI.getpokemons().then((pokemons) =>{
+    const lisItens = []
+   
+    pokemons.map()
 
-pokemonList.innerHTML += '<li>teste</li>'
-
-
-
-fetch(url)
-    .then((response) => response.json()) // modo simplificado ---- converter o body para json
-    .then((jsonBody) => jsonBody.result) // resultado da conversao passa a ser a lista pokemon
-    .then((pokemons) => {
-        
-        for (let i = 0; i < pokemons.lenght; i++) {
-            const pokemon = pokemons[i]
-            pokemonList.innerHTML += convertPokemonToLi(pokemon)
-        }
+    for (let i = 0; i < pokemons.lenght; i++) {
+        const pokemon = pokemons[i]
+        lisItens.push(convertPokemonToLi(pokemon))
+    }
 
     })
-    .catch((error)=> console.log(error))
-    
-
-    
-    /*
-    fetch(url)
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
-        }
-        return response.json();
-    }) // modo simplificado ---- converter o body para json
-    .then((jsonBody) => jsonBody.result) // resultado da conversao passa a ser a lista pokemon
-    .then((pokemons) => {
-        console.log(pokemons);
-        for (let i = 0; i < pokemons.length; i++) {
-            const pokemon = pokemons[i];
-            pokemonList.innerHTML += convertPokemonToLi(pokemon)
-        }
-
-    })
-    .catch((error)=> console.log(error))
-*/
